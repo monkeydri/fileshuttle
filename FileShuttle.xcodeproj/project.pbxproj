@@ -52,8 +52,8 @@
 		4CCFAA7B14AA142400D4A0BD /* status_item_mask.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CCFAA7914AA142400D4A0BD /* status_item_mask.png */; };
 		4CFBC71D13F9AADA0043F56A /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CFBC71C13F9AADA0043F56A /* MainMenu.xib */; };
 		4CFBC72513F9AFE30043F56A /* MVPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFBC72413F9AFE30043F56A /* MVPreferencesController.m */; };
-		F807667A1BCC4FD800C1E857 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F80766791BCC4FD800C1E857 /* Images.xcassets */; settings = {ASSET_TAGS = (); }; };
-		F80A7E001BCCD6FD0075C9D1 /* MVSCPFileUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = F80A7DFF1BCCD6FD0075C9D1 /* MVSCPFileUpload.m */; settings = {ASSET_TAGS = (); }; };
+		F807667A1BCC4FD800C1E857 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F80766791BCC4FD800C1E857 /* Images.xcassets */; };
+		F80A7E001BCCD6FD0075C9D1 /* MVSCPFileUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = F80A7DFF1BCCD6FD0075C9D1 /* MVSCPFileUpload.m */; };
 		F8BE958C16C649DC001368E1 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = F8BE958B16C649DC001368E1 /* dsa_pub.pem */; };
 /* End PBXBuildFile section */
 
@@ -526,6 +526,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
@@ -554,6 +555,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
