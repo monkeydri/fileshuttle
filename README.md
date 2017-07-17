@@ -1,7 +1,44 @@
 FileShuttle
 ===========
 
-FileShuttle is a little tool to quickly upload files on the Web. It supports FTP, SCP and SFTP.
+**FileShuttle** is a little tool to quickly upload files on the Web. It supports FTP, SCP and SFTP.
+
+# use
+
+## configuration
+
+Right click on menubar icon > "Preferences" > "Connection Settings" ("Preferences" > "General" for earlier versions).
+
+### FTP
+
+- Protocol : FTP
+- Host : ftp.hostname.com Port: 21
+- Username : ftp-username
+- Password : *******
+- Path : /www/upload
+- URL : https://www.hostname.com/upload/
+
+![ftp-preferences](fileshuttle-ftp-setup.png)
+
+### SFTP
+
+- Protocol : SFTP
+- Host : ftp.hostname.com Port: 21
+- Username : ftp-username
+- Password : *******
+- Path : /home/username/www/upload
+- URL : https://www.hostname.com/upload/
+
+![sftp-preferences](fileshuttle-sftp-setup.png)
+
+## upload
+
+- Drag a file from Finder and drop it on the menubar icon.
+- Link of uploaded file is copied to clipboard, you can paste it right away (even before upload is completed).
+
+see earlier uploaded files by left-clicking the menubar icon. Click an item will copy the URL corresponding to this already uploaded file to the clipboard.
+
+# version history
 
 Mac OSX 10.10 and above is supported, 10.8 is the minimum known required version however your mileage may vary
 
