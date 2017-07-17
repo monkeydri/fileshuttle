@@ -95,12 +95,15 @@
 	self.filename = filename;
 	NSString *encodedFilename = [self.filename stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	NSMutableString *path = [NSMutableString string];
+    //defaultPath is the path provided in Preferences
 	NSString *defaultPath = [defaults stringForKey:@"path"];
+    //set path to defaultPath, and add a leading slash if none
 	if([defaultPath length] == 0 || ![[defaultPath substringToIndex:1] isEqualToString:@"/"])
 		[path appendString:@"/"];
-	if(defaultPath)
+    if(defaultPath)
 		[path appendString:defaultPath];
-	if([path length] > 0 && ![[path substringFromIndex:[path length] - 1] isEqualToString:@"/"])
+	//add trailing slash to path if there is not already one
+    if([path length] > 0 && ![[path substringFromIndex:[path length] - 1] isEqualToString:@"/"])
 		[path appendString:@"/"];
 	[path appendString:encodedFilename];
   
@@ -138,11 +141,11 @@
                                                           source:source
                                                         delegate:self];
 	}
-	else if([protocol isEqualToString:@"SFTP"] || [protocol isEqualToString:@"SCP"]) {
+	else if([protocol isEqualToString:@"SFTP"]) {
 		NSString *destination = [NSString stringWithFormat:
-                             @"ssh://%@:%i/%@",hostname,port,path];
+                             @"sftp://%@:%i/%@",hostname,port,path];
 		
-		tmpFileUpload = [[MVSCPFileUpload alloc] initWithDestination:destination
+		tmpFileUpload = [[MVSFTPFileUpload alloc] initWithDestination:destination
                                                          username:username
                                                          password:password
                                                            source:source
@@ -151,7 +154,21 @@
 		tmpFileUpload.changePermissions = changePermissions;
 		tmpFileUpload.permissionString = permissionString;
 	}
-	
+
+    else if([protocol isEqualToString:@"SCP"]) {
+        NSString *destination = [NSString stringWithFormat:
+                                 @"ssh://%@:%i/%@",hostname,port,path];
+        
+        tmpFileUpload = [[MVSCPFileUpload alloc] initWithDestination:destination
+                                                            username:username
+                                                            password:password
+                                                              source:source
+                                                            delegate:self];
+        
+        tmpFileUpload.changePermissions = changePermissions;
+        tmpFileUpload.permissionString = permissionString;
+    }
+    
 	self.fileUpload = tmpFileUpload;
 	[tmpFileUpload release];
   
@@ -169,6 +186,8 @@
 - (void)fileUpload:(MVFileUpload*)fileUpload
   didFailWithError:(NSString*)error
 {
+    NSLog(@"didFailWithError : %@", error);
+    
 	self.tries--;
 	[self.fileUpload cancel];
 	if(self.tries > 0) {
@@ -187,6 +206,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)fileUploadDidStartUpload:(MVFileUpload *)fileUpload
 {
+    NSLog(@"fileUploadDidStartUpload");
+
 	if([self.delegate respondsToSelector:@selector(fileUploaderDidStart:)])
 		[self.delegate fileUploaderDidStart:self];
 }
